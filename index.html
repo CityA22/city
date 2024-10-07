@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일반탄 데미지 계산기</title>
+    <link href="./index.css" rel="stylesheet">
+    <script>
+    function calculateDamage() {
+    // 입력 값 가져오기
+    const atk = parseFloat(document.getElementById('atk').value);
+    const critDmg = parseFloat(document.getElementById('critDmg').value) / 100;
+    const weakDmg = parseFloat(document.getElementById('weakDmg').value) / 100;
+    const anyDmgBonus = parseFloat(document.getElementById('anyDmgBonus').value) / 100;
+    const weaponDmgBonus = parseFloat(document.getElementById('weaponDmgBonus').value) / 100;
+    const typeAdvantage = parseFloat(document.getElementById('typeAdvantage').value);
+
+    // 데미지 계산
+    const damage = atk * (1 + critDmg + weakDmg) * (1 + anyDmgBonus) * (1 + weaponDmgBonus) * typeAdvantage;
+
+    // 결과 표시
+    document.getElementById('result').innerText = `한발당 데미지: ${damage.toFixed(2)}`;
+}
+    </script>
+    
+</head>
+<body>
+
+    <div class="calculate_main">
+        <div><a href="./index.html"class="link_alpha"> 데미지 계산 하러가기</a></div>
+        <div><a href="./1.html"class="link_alpha">모듈비교 하러가기</a></div>
+        <div class="calculate_top"></div>
+        <div class="calculate_bottom">
+                <div class="calculate_left">
+                    <h1>데미지 계산기</h1>
+                    사용법, 
+                    장비창스탯에 있는 백분율을 입력하시면됩니다.
+                    크리티컬 프렌지 울프셋등 가변항목은 적용이 안되니
+                    참고용으로 사용하시기바랍니다.
+                    <br><br>
+                    <form id="damageForm">
+                        <label for="atk">공격력 (ATK):</label>
+                        <input type="number" id="atk" name="atk" value="100" required><br><br>
+                    
+                        <label for="critDmg">치명타 데미지 (CritDmg %):</label>
+                        <input type="number" id="critDmg" name="critDmg" value="50" required><br><br>
+                    
+                        <label for="weakDmg">약점 데미지 (WeakDmg %):</label>
+                        <input type="number" id="weakDmg" name="weakDmg" value="20" required><br><br>
+                    
+                        <label for="anyDmgBonus">데미지 보너스 (AnyDmgBonus %):</label>
+                        <input type="number" id="anyDmgBonus" name="anyDmgBonus" value="10" required><br><br>
+                    
+                        <label for="weaponDmgBonus">무기 데미지 보너스 (WeaponDmgBonus %):</label>
+                        <input type="number" id="weaponDmgBonus" name="weaponDmgBonus" value="15" required><br><br>
+                    
+                        <label for="typeAdvantage">속성 상성 (TypeAdvantage):</label>
+                        <select id="typeAdvantage" name="typeAdvantage" required>
+                            <option value="1">보스몹</option>
+                            <option value="0.95">일반몹(허수아비)</option>
+                        </select><br><br>
+                    
+                        <button type="button" onclick="calculateDamage()">계산하기</button>
+                    </form>
+                    
+                    <p id="result">한발당 데미지: </p>
+                </div>
+
+            <div class="calculate_right"></div>
+
+        </div>
+        
+            
+        </div>
+    </div>
+</body>
+</html>
